@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen flex justify-center items-start bg-gray-100 dark:bg-gray-900 px-4 pt-10">
+        <div class="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+            <h1 class="text-2xl font-semibold text-gray-800 dark:text-white mb-6">Edit Profile</h1>
+
+            {% for flash_error in app.flashes('profile_error') %}
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    {{ flash_error }}
+                </div>
+            {% endfor %}
+
+            {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+
+                <div>
+                    {{ form_label(form.name, 'Full Name', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white'}}) }}
+                    {{ form_errors(form.name) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.bio, 'Bio', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(form.bio, {'attr': {'class': 'w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white'}}) }}
+                    {{ form_errors(form.bio) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.websiteUrl, 'Website', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(form.websiteUrl, {'attr': {'class': 'w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white'}}) }}
+                    {{ form_errors(form.websiteUrl) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.twitterUsername, 'Twitter Username', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(form.twitterUsername, {'attr': {'class': 'w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white'}}) }}
+                    {{ form_errors(form.twitterUsername) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.company, 'Company', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(form.company, {'attr': {'class': 'w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white'}}) }}
+                    {{ form_errors(form.company) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.location, 'Location', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(form.location, {'attr': {'class': 'w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white'}}) }}
+                    {{ form_errors(form.location) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.dateOfBirth, 'Date of Birth', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(form.dateOfBirth, {'attr': {'class': 'w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white'}}) }}
+                    {{ form_errors(form.dateOfBirth) }}
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl transition shadow-md">
+                        Save Changes
+                    </button>
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

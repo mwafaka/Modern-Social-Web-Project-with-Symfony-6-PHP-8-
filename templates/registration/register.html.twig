@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="max-w-xl mx-auto mt-10 px-6">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="bg-red-100 text-red-700 border border-red-300 px-4 py-3 rounded-md mb-4">
+                {{ flash_error }}
+            </div>
+        {% endfor %}
+
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+            <h1 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Create your account</h1>
+
+            {{ form_start(registrationForm, {'attr': {'class': 'space-y-6'}}) }}
+
+                <div>
+                    {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none'}}) }}
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.plainPassword.first, 'Password', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none'}}) }}
+                    {{ form_errors(registrationForm.plainPassword.first) }}
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.plainPassword.second, 'Repeat Password', {'label_attr': {'class': 'block text-sm font-medium text-gray-700 dark:text-gray-300'}}) }}
+                    {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none'}}) }}
+                    {{ form_errors(registrationForm.plainPassword.second) }}
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'rounded text-blue-600 focus:ring-blue-500'}}) }}
+                    </div>
+                    <div class="ml-3 text-sm">
+                        {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'font-medium text-gray-700 dark:text-gray-300'}}) }}
+                        {{ form_errors(registrationForm.agreeTerms) }}
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition">
+                        Register
+                    </button>
+                </div>
+
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Posts
+{% endblock %}
+
+{% block body %}
+	<div class="container mx-auto px-6 py-8">
+		<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">All Posts</h1>
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+			{% if posts|length > 0 %}
+				{% for post in posts %}
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-transform transform hover:scale-105">
+						<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+							<a href="{{ path('app_micro_post_show', { id: post.id }) }}" class="hover:text-blue-500">
+								{{ post.title }}
+							</a>
+						</h2>
+
+						<p class="mt-3 text-gray-700 dark:text-gray-300">
+							{{ post.text|slice(0, 100) }}
+							{% if post.text|length > 100 %}...
+							{% endif %}
+						</p>
+
+						<p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+							Eamil
+							{{ post.author.email}}
+						</p>
+						<p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+							Published on
+							{{ post.created | date("M j, Y") }}
+						</p>
+						<div class="mt-4 flex items-center justify-between">
+							<a href="#" class="text-blue-500 hover:text-blue-700 flex items-center">
+								👍 Like
+								<span class="ml-2 px-2 py-1 text-sm bg-gray-200 dark:bg-gray-700 rounded">0</span>
+							</a>
+
+							<div class="flex space-x-4">
+								<a href="{{ path('app_micro_post_edit', { id: post.id }) }}" class="text-sm bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition">
+									✏️ Edit
+								</a>
+								<a href="{{ path('app_micro_post_add_comment', { id: post.id }) }}" class="text-sm bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition">
+									💬 Comment  ({{ post.comments|length }})
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			{% else %}
+				<p class="text-lg text-gray-600 dark:text-gray-300">No posts available yet!</p>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

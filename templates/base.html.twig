@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="text-[16px] leading-relaxed antialiased bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><text y='1.2em' font-size='96'>⚫️</text><text y='1.3em' x='0.2em' font-size='76' fill='#fff'>sf</text></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Optional: Inter font, like on iOS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        html { font-family: 'Inter', sans-serif; }
+    </style>
+
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="bg-white dark:bg-gray-800 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="{{ path('app_micro_post') }}" class="text-xl font-bold text-gray-900 dark:text-white">Symfony App</a>
+        <ul class="flex gap-4 text-gray-700 dark:text-gray-200 text-sm">
+            <li><a href="{{ path('app_micro_post') }}" class="hover:text-blue-500">Home</a></li>
+            {% if app.user %}
+                <li><a href="{{ path('app_micro_post_add') }}" class="hover:text-blue-500">Add</a></li>
+                <li><a href="{{ path('app_settings_profile') }}" class="hover:text-blue-500">Profile</a></li>
+                <li><a href="{{ path('app_logout') }}" class="hover:text-red-500">Logout</a></li>
+            {% else %}
+                <li><a href="{{ path('app_login') }}" class="hover:text-blue-500">Login</a></li>
+            {% endif %}
+            <li><a href="{{ path('app_register') }}" class="hover:text-blue-500">Register</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Flash Messages -->
+{% for message in app.flashes('success') %}
+    <div class="container mx-auto mt-4">
+        <div class="bg-green-100 text-green-800 px-6 py-4 rounded-lg shadow-sm">
+            {{ message }}
+        </div>
+    </div>
+{% endfor %}
+
+<!-- Main Content -->
+<main class="container mx-auto px-4 py-6">
+    {% block body %}{% endblock %}
+</main>
+
+</body>
+</html>
