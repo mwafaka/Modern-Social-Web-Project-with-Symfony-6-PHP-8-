@@ -10,7 +10,7 @@
 ###< symfony/framework-bundle ###
 .env
 .env.dev
-composer.lock
+
 docker-compose.yml
 docker-compose.override.yml
 .docker/
